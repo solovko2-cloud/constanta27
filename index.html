@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>РАК · 27-α-ОФИ · 2021 | Наша Константа</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=UnifrakturMaguntia&family=Cinzel+Decorative:wght@700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=UnifrakturMaguntia&family=Cinzel+Decorative:wght@700&display=swap');
 
   :root {
     --gold: #d4af37;
     --gold-light: #f3e5ab;
     --gold-dim: #8B6914;
     --dark: #07070f;
-    --card-bg: rgba(15, 15, 26, 0.7);
+    --card-bg: rgba(15, 15, 26, 0.75);
     --text: #ede4d1;
     --text-dim: #a6967a;
   }
@@ -40,9 +40,9 @@
   .container {
     position: relative;
     z-index: 1;
-    max-width: 740px;
+    max-width: 760px;
     margin: 0 auto;
-    padding: 70px 24px 90px;
+    padding: 70px 22px 100px;
   }
 
   /* ── ШАПКА ── */
@@ -82,7 +82,7 @@
     font-style: italic;
     color: var(--gold-light);
     line-height: 1.6;
-    max-width: 580px;
+    max-width: 600px;
     margin: 18px auto 0;
     opacity: 0.95;
     text-shadow: 0 0 12px rgba(212,175,55,0.25);
@@ -98,17 +98,17 @@
 
   /* ── РАЗДЕЛЫ ── */
   .section {
-    margin-bottom: 68px;
+    margin-bottom: 74px;
     animation: fadeIn 2s ease;
     text-align: center;
   }
 
   .section-label {
-    font-size: 11px;
-    letter-spacing: 0.5em;
+    font-size: 11.5px;
+    letter-spacing: 0.45em;
     color: var(--gold-dim);
     text-transform: uppercase;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -128,14 +128,14 @@
     background: linear-gradient(to right, var(--gold-dim), transparent);
   }
 
-  /* ТЕКСТОВЫЕ БЛОКИ: ВЫРАВНИВАНИЕ ПО ЦЕНТРУ */
+  /* ТЕКСТОВЫЕ БЛОКИ */
   .text-block {
-    font-size: 18px;
+    font-size: 18.5px;
     line-height: 1.9;
     color: var(--text);
     font-weight: 300;
     text-align: center;
-    max-width: 620px;
+    max-width: 640px;
     margin: 0 auto;
   }
 
@@ -152,7 +152,7 @@
   /* БЭЙДЖ ПЕСНИ ЗНАКОМСТВА */
   .music-badge {
     margin: 28px auto 0;
-    max-width: 560px;
+    max-width: 580px;
     background: rgba(212, 175, 55, 0.05);
     border: 1px solid rgba(212, 175, 55, 0.30);
     border-radius: 4px;
@@ -197,7 +197,7 @@
     line-height: 1.45;
   }
 
-  /* ── ФОТОГАЛЕРЕЯ ── */
+  /* ── ФОТОГАЛЕРЕИ ── */
   .photo-grid {
     display: grid;
     gap: 16px;
@@ -215,6 +215,7 @@
     border: 1px solid rgba(212,175,55,0.25);
     background: #060812;
     box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    cursor: pointer;
   }
 
   .photo-item img {
@@ -230,21 +231,26 @@
     aspect-ratio: 3/4;
   }
 
+  .photo-item.square img {
+    aspect-ratio: 1/1;
+  }
+
   .photo-item:hover img {
-    transform: scale(1.04);
+    transform: scale(1.05);
   }
 
   .photo-item .caption {
     position: absolute;
     bottom: 0;
     left: 0; right: 0;
-    background: linear-gradient(to top, rgba(7,7,15,0.95) 0%, rgba(7,7,15,0.65) 75%, transparent 100%);
-    padding: 26px 12px 10px;
+    background: linear-gradient(to top, rgba(7,7,15,0.95) 0%, rgba(7,7,15,0.70) 75%, transparent 100%);
+    padding: 28px 12px 10px;
     font-size: 12px;
     color: var(--text);
     font-style: italic;
     letter-spacing: 0.04em;
     text-align: center;
+    line-height: 1.35;
   }
 
   /* ── ВИДЕОПРЕДЛОЖЕНИЕ 10 000 М ── */
@@ -282,12 +288,97 @@
     border-top: 1px solid rgba(212,175,55,0.15);
   }
 
+  /* ── ИНТЕРАКТИВНЫЙ СЛАЙДЕР КОЛЬЦА (15 ШАГОВ) ── */
+  .ring-carousel {
+    margin-top: 30px;
+    background: rgba(15, 15, 26, 0.85);
+    border: 1px solid rgba(212,175,55,0.30);
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+  }
+
+  .ring-carousel-title {
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .ring-carousel-sub {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-dim);
+    margin-bottom: 18px;
+  }
+
+  .ring-stage-view {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid rgba(212,175,55,0.25);
+    background: #000;
+    cursor: pointer;
+  }
+
+  .ring-stage-view img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s ease;
+  }
+
+  .ring-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-top: 16px;
+  }
+
+  .ring-btn {
+    background: rgba(212,175,55,0.12);
+    border: 1px solid rgba(212,175,55,0.40);
+    color: var(--gold);
+    padding: 6px 16px;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .ring-btn:hover {
+    background: rgba(212,175,55,0.25);
+    border-color: var(--gold);
+  }
+
+  .ring-counter {
+    font-size: 12.5px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+  }
+
+  .ring-caption-text {
+    margin-top: 12px;
+    font-size: 14.5px;
+    color: var(--gold-light);
+    font-style: italic;
+    min-height: 24px;
+  }
+
   /* ── ТАЙМЛАЙН КОНСТАНТЫ ── */
   .timeline {
     display: flex;
     flex-direction: column;
     gap: 22px;
-    max-width: 520px;
+    max-width: 540px;
     margin: 26px auto 0;
     text-align: left;
   }
@@ -355,7 +446,7 @@
     border-top: 1px solid rgba(212,175,55,0.25);
     border-bottom: 1px solid rgba(212,175,55,0.25);
     margin: 50px auto;
-    max-width: 640px;
+    max-width: 660px;
   }
 
   .latin-quote {
@@ -393,6 +484,29 @@
     line-height: 2.1;
   }
 
+  /* ── МОДАЛЬНЫЙ LIGHTBOX ДЛЯ ПРОСМОТРА ФОТО ── */
+  #lightbox {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(3, 4, 10, 0.94);
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    cursor: zoom-out;
+  }
+
+  #lightbox img {
+    max-width: 95vw;
+    max-height: 90vh;
+    border-radius: 3px;
+    border: 1px solid rgba(212,175,55,0.4);
+    box-shadow: 0 0 40px rgba(0,0,0,0.9);
+    object-fit: contain;
+  }
+
   /* ── АНИМАЦИИ ── */
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(18px); }
@@ -426,7 +540,7 @@
     <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
   </header>
 
-  <!-- 2. СЕКЦИЯ 1: ИСТОРИЯ ВСТРЕЧИ -->
+  <!-- 2. СЕКЦИЯ 1: ИСТОРИЯ ВСТРЕЧИ И ДВА ВЗГЛЯДА -->
   <section class="section">
     <div class="section-label">Как это началось</div>
     <div class="text-block">
@@ -444,52 +558,62 @@
         <span class="music-quote">«Мы такие разные, но вдвоём мы никому разделить нас не даём... Ты Венера, я Юпитер»</span>
       </div>
     </div>
+
+    <!-- ФОТО ГЛАЗ -->
+    <div class="photo-grid cols-1" style="max-width: 540px; margin: 26px auto 0;">
+      <div class="photo-item">
+        <img src="assets/our_eyes.jpg" alt="Два взгляда — одна вселенная" loading="lazy">
+        <div class="caption">Два взгляда — одна вселенная · Наш оригинальный снимок</div>
+      </div>
+    </div>
   </section>
 
-  <!-- 3. СЕКЦИЯ: НАШИ МОМЕНТЫ (ПЕРВЫЕ ШАГИ И ПУТЕШЕСТВИЯ) -->
+  <!-- 3. СЕКЦИЯ: ПЕРВЫЕ ШАГИ И ПУТЕШЕСТВИЯ -->
   <section class="section">
     <div class="section-label">Первые шаги и путешествия</div>
     <div class="photo-grid cols-2">
-      
-      <!-- 1. У родителей 2020 год -->
       <div class="photo-item">
         <img src="assets/parents_2020.jpg" alt="У родителей 2020 год" loading="lazy">
         <div class="caption">У родителей · 2020 год</div>
       </div>
-
-      <!-- 2. Первая поездка в Магнитогорск -->
       <div class="photo-item">
         <img src="assets/trip_magnitogorsk.jpg" alt="Первая поездка в Магнитогорск" loading="lazy">
         <div class="caption">Первая поездка в Магнитогорск</div>
       </div>
-
-      <!-- 3. Первый раз в самолёте на пути в Магнитогорск -->
       <div class="photo-item">
-        <img src="assets/plane_to_magnitogorsk.jpg" alt="Первый раз в самолете на пути в Магнитогорск" loading="lazy">
+        <img src="assets/plane_to_magnitogorsk.jpg" alt="Первый полёт на пути в Магнитогорск" loading="lazy">
         <div class="caption">Первый полёт на пути в Магнитогорск</div>
       </div>
-
-      <!-- 4. В тематических костюмах -->
       <div class="photo-item">
-        <img src="assets/costume_birthday.jpg" alt="Ездили на день рождения в тематических костюмах" loading="lazy">
+        <img src="assets/costume_birthday.jpg" alt="В тематических костюмах" loading="lazy">
         <div class="caption">На день рождения в тематических костюмах</div>
       </div>
-
     </div>
   </section>
 
-  <!-- 4. СЕКЦИЯ 2: ПРЕДЛОЖЕНИЕ 10 000 МЕТРОВ -->
+  <!-- 4. СЕКЦИЯ 2: ПРЕДЛОЖЕНИЕ 10 000 МЕТРОВ И ТАЙНЫЙ МАСТЕР-КЛАСС -->
   <section class="section">
     <div class="section-label">13 мая 2021 · 10 000 метров</div>
     <div class="text-block">
       Рейс SU 1429 (Магнитогорск — Москва).<br>
       В кармане — кольцо. Не купленное.<br>
       <em>Сделанное своими руками на тайном мастер-классе.</em><br><br>
-      Тринадцатое. Четверг. Не пятница — но всё равно<br>
-      против суеверий. Как всегда.
+      Тринадцатое. Четверг. Не пятница — но всё равно против суеверий. Как всегда.
     </div>
 
-    <!-- ВИДЕО ПРЕДЛОЖЕНИЯ С НЕЖНОЙ ФОНОВОЙ МЕЛОДИЕЙ -->
+    <!-- ФОТО ПЕРЕД ВЫЛЕТОМ -->
+    <div class="photo-grid cols-2" style="margin-top: 24px;">
+      <div class="photo-item">
+        <img src="assets/flight_bird.jpg" alt="Отвожу на работу свою птичку" loading="lazy">
+        <div class="caption">Отвожу на работу свою птичку ✈️</div>
+      </div>
+      <div class="photo-item">
+        <img src="assets/airport_before_proposal.jpg" alt="В аэропорту перед посадкой" loading="lazy">
+        <div class="caption">Ожидаем тот самый рейс домой... Она ничего не подозревала</div>
+      </div>
+    </div>
+
+    <!-- ВИДЕО ПРЕДЛОЖЕНИЯ -->
     <div class="video-card">
       <div class="video-wrapper">
         <video controls playsinline preload="metadata" poster="assets/proposal_poster.jpg">
@@ -499,9 +623,156 @@
       </div>
       <div class="video-caption">13 мая 2021 · Рейс SU 1429 · На высоте 10 000 метров ✦</div>
     </div>
+
+    <!-- СЛАЙДЕР ЭТАПОВ СОЗДАНИЯ КОЛЬЦА СВОИМИ РУКАМИ -->
+    <div class="ring-carousel">
+      <div class="ring-carousel-title">✦ 28 марта 2021 · Тайный мастер-класс ✦</div>
+      <div class="ring-carousel-sub">Хроника рождения кольца: от слитка металла до заветного шедевра своими руками</div>
+      
+      <div class="ring-stage-view" id="ring-view">
+        <img id="ring-img" src="assets/ring/ring_step_01.jpg" alt="Этап создания кольца">
+      </div>
+
+      <div class="ring-caption-text" id="ring-caption">Шаг 1 из 15: Исходная заготовка и замеры профиля</div>
+
+      <div class="ring-controls">
+        <button class="ring-btn" onclick="prevRingStep()">← Назад</button>
+        <span class="ring-counter" id="ring-counter">1 / 15</span>
+        <button class="ring-btn" onclick="nextRingStep()">Вперёд →</button>
+      </div>
+    </div>
   </section>
 
-  <!-- 5. СЕКЦИЯ: СОЗВЕЗДИЕ ЗМЕЕНОСЦА И ЗВЕЗДА РАС АЛЬХАГ -->
+  <!-- 5. СЕКЦИЯ: НАШИ СТИХИИ И ОКЕАН -->
+  <section class="section">
+    <div class="section-label">Океан и наши стихии</div>
+    <div class="photo-grid cols-2">
+      <div class="photo-item portrait">
+        <img src="assets/bali_vacation.jpg" alt="Остров Бали" loading="lazy">
+        <div class="caption">Остров Бали · Наш первый прекрасный отпуск</div>
+      </div>
+      <div class="photo-item square">
+        <img src="assets/coast_vacation.jpg" alt="Отдых на берегу" loading="lazy">
+        <div class="caption">Отдых на берегу с друзьями</div>
+      </div>
+    </div>
+
+    <div class="photo-grid cols-2" style="margin-top: 16px;">
+      <div class="photo-item portrait">
+        <img src="assets/walking_cold.jpg" alt="Так гулять было не очень удобно" loading="lazy">
+        <div class="caption">Так гулять было не очень удобно)</div>
+      </div>
+      <div class="photo-item portrait">
+        <img src="assets/walking_fun.gif" alt="Ради этого стоило потерпеть" loading="lazy">
+        <div class="caption">Но эти неудобства можно было и потерпеть ради этого)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. СЕКЦИЯ: НАШ ПУТЬ И ОБЩЕЕ ДЕЛО -->
+  <section class="section">
+    <div class="section-label">Наш общий путь и труд</div>
+    <div class="photo-grid cols-2">
+      <div class="photo-item square">
+        <img src="assets/our_business.jpg" alt="Наше общее дело" loading="lazy">
+        <div class="caption">У нас было ИП: ты проверяла каждый товар, а я отвозил в ночь. Мы делали это вместе — ради нашего будущего!</div>
+      </div>
+      <div class="photo-item portrait">
+        <img src="assets/tattoo_process.jpg" alt="Создание шедевра на руке" loading="lazy">
+        <div class="caption">Процесс создания шедевра на руке</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. СЕКЦИЯ: ТРАДИЦИИ И ПОДАРКИ (ЕЖЕГОДНЫЙ КВЕСТ) -->
+  <section class="section">
+    <div class="section-label">Традиции, квесты и подарки</div>
+    <div class="photo-grid cols-2">
+      <div class="photo-item portrait">
+        <img src="assets/first_birthday_gift.jpg" alt="Первый подарок госпоже" loading="lazy">
+        <div class="caption">Собственно, первый подарок на день рождения моей госпоже</div>
+      </div>
+      <div class="photo-item square">
+        <img src="assets/gift_quest.jpg" alt="Ежегодный квест" loading="lazy">
+        <div class="caption">Креативная упаковка подарка — ежегодный квест на день рождения</div>
+      </div>
+      <div class="photo-item portrait">
+        <img src="assets/gift_box_fun.jpg" alt="Упаковка подарков" loading="lazy">
+        <div class="caption">Да, упаковка подарков раньше была куда интересней xD</div>
+      </div>
+      <div class="photo-item portrait">
+        <img src="assets/hint_birthday_gift.jpg" alt="Намёк на подарок" loading="lazy">
+        <div class="caption">Это было сложным намёком на подарок в день рождения меня)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. СЕКЦИЯ: ОБРАЗЫ И БУНТАРСКИЙ ДУХ -->
+  <section class="section">
+    <div class="section-label">Образы, красота и бунтарский дух</div>
+    <div class="photo-grid cols-3">
+      <div class="photo-item portrait">
+        <img src="assets/celestial_queen.jpg" alt="Небесная царица" loading="lazy">
+        <div class="caption">Небесная царица</div>
+      </div>
+      <div class="photo-item portrait">
+        <img src="assets/rebel_girl.jpg" alt="Моя бунтарка" loading="lazy">
+        <div class="caption">Моя бунтарка</div>
+      </div>
+      <div class="photo-item portrait">
+        <img src="assets/adepta_sororitas.jpg" alt="Живая святая Адептус Сороритас" loading="lazy">
+        <div class="caption">Живая святая Адептус Сороритас</div>
+      </div>
+      <div class="photo-item">
+        <img src="assets/sleeping_beauty.jpg" alt="Сфоткал любимую пока она спит" loading="lazy">
+        <div class="caption">Сфоткал любимую, пока она спит. Люблю её</div>
+      </div>
+      <div class="photo-item portrait">
+        <img src="assets/best_photo.jpg" alt="Лучше фото я не нашёл" loading="lazy">
+        <div class="caption">Лучше фото я не нашёл)</div>
+      </div>
+      <div class="photo-item portrait">
+        <img src="assets/fun_moment.jpg" alt="Наше тепло и улыбки" loading="lazy">
+        <div class="caption">Наше тепло и улыбки</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. СЕКЦИЯ: НАШЕ ПРОДОЛЖЕНИЕ (НАС СТАЛО ТРОЕ) -->
+  <section class="section">
+    <div class="section-label">Наше продолжение · Нас стало трое</div>
+    <div class="text-block" style="margin-bottom: 20px;">
+      27 июня — Забрал вас с дочкой из роддома.<br>
+      <em>И теперь наше чудо учится у лучшей мамы на свете.</em>
+    </div>
+    <div class="photo-grid cols-2">
+      <div class="photo-item portrait">
+        <img src="assets/daughter_makeup_1.jpg" alt="Наше чудо красится, как мама" loading="lazy">
+        <div class="caption">Наше чудо красится, чтобы быть красивой, как мама</div>
+      </div>
+      <div class="photo-item portrait">
+        <img src="assets/daughter_makeup_2.jpg" alt="И снова красится, как мама" loading="lazy">
+        <div class="caption">И снова красится, чтобы быть как мама ❤️</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. СЕКЦИЯ: ДЕНЬ ЗЕМНОГО СОЮЗА · СВАДЬБА 2021 -->
+  <section class="section">
+    <div class="section-label">День Земного Союза · 27.12.2021</div>
+    <div class="photo-grid cols-2">
+      <div class="photo-item portrait">
+        <img src="assets/wedding_2021.jpg" alt="Наша свадьба 2021" loading="lazy">
+        <div class="caption">Наша свадьба · 27.12.2021</div>
+      </div>
+      <div class="photo-item portrait">
+        <img src="assets/wedding_2021_portrait.jpg" alt="Свадебный вальс" loading="lazy">
+        <div class="caption">Свадебный вальс · Рождение семьи</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. СЕКЦИЯ: СОЗВЕЗДИЕ ЗМЕЕНОСЦА И ЗВЕЗДА РАС АЛЬХАГ -->
   <section class="section">
     <div class="section-label">Созвездие Змееносца в атласе</div>
     <div class="text-block" style="margin-bottom: 20px;">
@@ -520,33 +791,7 @@
     </div>
   </section>
 
-  <!-- 6. СЕКЦИЯ: ВЕХИ СУДЬБЫ — БАЛИ И СВАДЬБА -->
-  <section class="section">
-    <div class="section-label">Вехи союза: Бали и Свадьба</div>
-    <div class="photo-grid cols-3">
-      
-      <!-- 1. Отпуск на Бали -->
-      <div class="photo-item portrait">
-        <img src="assets/bali_vacation.jpg" alt="Наш первый прекрасный отпуск на Бали" loading="lazy">
-        <div class="caption">Остров Бали · Наш первый прекрасный отпуск</div>
-      </div>
-
-      <!-- 2. Свадьба 2021 -->
-      <div class="photo-item portrait">
-        <img src="assets/wedding_2021.jpg" alt="Наша свадьба 2021" loading="lazy">
-        <div class="caption">Наша свадьба · 27.12.2021</div>
-      </div>
-
-      <!-- 3. Свадебный портрет -->
-      <div class="photo-item portrait">
-        <img src="assets/wedding_2021_portrait.jpg" alt="Свадебный день" loading="lazy">
-        <div class="caption">Свадебный вальс · Рождение семьи</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 7. ТАЙМЛАЙН: НАША КОНСТАНТА -->
+  <!-- 12. ТАЙМЛАЙН: НАША КОНСТАНТА -->
   <section class="section">
     <div class="section-label">Наша константа</div>
     <div class="timeline">
@@ -584,7 +829,7 @@
     </div>
   </section>
 
-  <!-- 8. ФИНАЛЬНЫЙ МАНИФЕСТ -->
+  <!-- 13. ФИНАЛЬНЫЙ МАНИФЕСТ -->
   <div class="quote">
     <div class="latin-quote">
       «In orbe infinito omnis meridianus calorem itinerum servat,<br>
@@ -599,7 +844,7 @@
     <div class="attribution">Антон &amp; Юлия · с 27.05 навсегда · Константа 27</div>
   </div>
 
-  <!-- 9. АСТРОНОМИЧЕСКИЙ ПОДВАЛ -->
+  <!-- 14. АСТРОНОМИЧЕСКИЙ ПОДВАЛ -->
   <footer class="coords-footer">
     α = 17h 34m 56s &nbsp;/&nbsp; δ = +12° 33′ 36″<br>
     Созвездие Змееносца · 48.6 световых лет · Двойная звезда Рас Альхаг<br>
@@ -609,8 +854,14 @@
 
 </div>
 
-<!-- Скрипт звёздного неба (Canvas) -->
+<!-- Полноэкранный Lightbox для фото -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Фото крупным планом">
+</div>
+
+<!-- Скрипты: интерактивное небо, слайдер кольца и лайтбокс -->
 <script>
+  // 1. Анимированное звездное небо
   (function() {
     const canvas = document.getElementById('stars-canvas');
     const ctx = canvas.getContext('2d');
@@ -660,6 +911,70 @@
     resize();
     draw();
   })();
+
+  // 2. Слайдер этапов создания кольца своими руками
+  const ringSteps = [
+    { num: 1, caption: "1. Исходный драгоценный брусок металла перед началом работы" },
+    { num: 2, caption: "2. Точные замеры сечения и разметка профиля будущего кольца" },
+    { num: 3, caption: "3. Нагрев и высокотемпературный отжиг металла газовой горелкой" },
+    { num: 4, caption: "4. Первая ковка и постепенный изгиб заготовки в окружность" },
+    { num: 5, caption: "5. Сведение стыков на ювелирном ригеле" },
+    { num: 6, caption: "6. Пайка шва серебряным/золотым припоем в пламени" },
+    { num: 7, caption: "7. Проковка формы молотком для идеального кольца" },
+    { num: 8, caption: "8. Опиловка граней надфилями и грубая шлифовка" },
+    { num: 9, caption: "9. Подгонка внутренней поверхности под точный размер пальца" },
+    { num: 10, caption: "10. Промежуточная калибровка и выравнивание геометрии" },
+    { num: 11, caption: "11. Формирование ювелирного посадочного места (каста)" },
+    { num: 12, caption: "12. Аккуратная закрепка камня в металле" },
+    { num: 13, caption: "13. Тонкая абразивная шлифовка всех граней" },
+    { num: 14, caption: "14. Финишная полировка войлочным кругом до зеркального блеска" },
+    { num: 15, caption: "15. Готовый авторский шедевр, сделанный с любовью для того самого рейса!" }
+  ];
+
+  let currentRingIdx = 0;
+  const ringImg = document.getElementById('ring-img');
+  const ringCaption = document.getElementById('ring-caption');
+  const ringCounter = document.getElementById('ring-counter');
+
+  function updateRingDisplay() {
+    const s = ringSteps[currentRingIdx];
+    const padIdx = String(s.num).padStart(2, '0');
+    ringImg.src = `assets/ring/ring_step_${padIdx}.jpg`;
+    ringCaption.textContent = s.caption;
+    ringCounter.textContent = `${s.num} / ${ringSteps.length}`;
+  }
+
+  function nextRingStep() {
+    currentRingIdx = (currentRingIdx + 1) % ringSteps.length;
+    updateRingDisplay();
+  }
+
+  function prevRingStep() {
+    currentRingIdx = (currentRingIdx - 1 + ringSteps.length) % ringSteps.length;
+    updateRingDisplay();
+  }
+
+  // 3. Lightbox для зума фото
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  document.querySelectorAll('.photo-item img, #ring-img').forEach(img => {
+    img.addEventListener('click', (e) => {
+      e.stopPropagation();
+      lightboxImg.src = img.src;
+      lightbox.style.display = 'flex';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') nextRingStep();
+    if (e.key === 'ArrowLeft') prevRingStep();
+  });
 </script>
 
 </body>
