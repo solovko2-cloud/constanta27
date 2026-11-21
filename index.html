@@ -789,6 +789,28 @@
         <div class="caption">Рас Альхаг — оптический фокус ×500</div>
       </div>
     </div>
+
+    <!-- ИНТЕРАКТИВНЫЙ ПЛАНЕТАРИЙ STELLARIUM WEB -->
+    <div class="stellarium-widget" style="margin-top: 26px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; font-size:11px; letter-spacing:0.12em; color:#d4af37; text-transform:uppercase;">
+        <span>✦ Интерактивный планетарий · Фокус на Рас Альхаг ✦</span>
+        <a href="https://stellarium-web.org/skysource/RasAlhague?fov=25&lat=55.75&lng=37.61" target="_blank" rel="noopener" style="color:#d4af37; text-decoration:none; border-bottom:1px dotted rgba(212,175,55,0.6); padding-bottom:1px;">На весь экран ↗</a>
+      </div>
+      <div style="position:relative; width:100%; height:480px; border:1px solid rgba(212,175,55,0.35); border-radius:4px; overflow:hidden; background:#000; box-shadow: 0 10px 30px rgba(0,0,0,0.85);">
+        <iframe 
+          src="https://stellarium-web.org/skysource/RasAlhague?fov=25&lat=55.75&lng=37.61" 
+          width="100%" 
+          height="100%" 
+          frameborder="0" 
+          allowfullscreen 
+          loading="lazy"
+          title="Интерактивная карта звездного неба Stellarium">
+        </iframe>
+      </div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.5); text-align:center; margin-top:8px; font-style:italic;">
+        Вращайте небо мышкой или пальцем, приближайте колёсиком, переключайте созвездия и параметры в нижней панели Stellarium.
+      </div>
+    </div>
   </section>
 
   <!-- 12. ТАЙМЛАЙН: НАША КОНСТАНТА -->
@@ -867,12 +889,16 @@
 
 <!-- Скрипты: интерактивное небо, слайдер кольца и лайтбокс -->
 <script>
-  // 1. Анимированное звездное небо
+  // 1. Анимированное звездное небо с суточным вращением и падающими звездами
   (function() {
     const canvas = document.getElementById('stars-canvas');
     const ctx = canvas.getContext('2d');
     let stars = [];
+    let shootingStars = [];
     let w = 0, h = 0;
+    let rotationAngle = 0;
+    let lastShootTime = Date.now();
+    let nextShootDelay = 1500; // ms
 
     function resize() {
       w = canvas.width = window.innerWidth;
@@ -882,21 +908,59 @@
 
     function createStars() {
       stars = [];
-      const count = Math.floor((w * h) / 3800);
+      const diag = Math.sqrt(w * w + h * h);
+      const count = Math.floor((diag * diag) / 4500);
       for (let i = 0; i < count; i++) {
+        const dist = Math.random() * (diag * 0.7);
+        const theta = Math.random() * Math.PI * 2;
         stars.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          radius: Math.random() * 1.2 + 0.3,
+          x: Math.cos(theta) * dist,
+          y: Math.sin(theta) * dist,
+          radius: Math.random() * 1.3 + 0.3,
           alpha: Math.random() * 0.8 + 0.2,
           speed: Math.random() * 0.015 + 0.005,
-          color: Math.random() > 0.85 ? '#f5dfa8' : (Math.random() > 0.9 ? '#cde2ff' : '#ffffff')
+          color: Math.random() > 0.82 ? '#f5dfa8' : (Math.random() > 0.88 ? '#cde2ff' : '#ffffff')
         });
       }
     }
 
+    function spawnShootingStar() {
+      const startX = Math.random() * (w * 0.85);
+      const startY = Math.random() * (h * 0.55);
+      const angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.35; // ~45 deg diagonal
+      const length = Math.random() * 140 + 80; // 80 - 220px
+      const speed = Math.random() * 6 + 11; // 11 - 17 px/frame
+      const maxLife = Math.floor(length / speed) + 25;
+      const hue = Math.random() > 0.6 ? '#f5dfa8' : (Math.random() > 0.5 ? '#cde2ff' : '#ffffff');
+
+      shootingStars.push({
+        x: startX,
+        y: startY,
+        angle: angle,
+        dx: Math.cos(angle) * speed,
+        dy: Math.sin(angle) * speed,
+        length: length,
+        life: 0,
+        maxLife: maxLife,
+        color: hue
+      });
+
+      lastShootTime = Date.now();
+      nextShootDelay = Math.random() * 2500 + 1500; // каждые 1.5 - 4 секунды
+    }
+
     function draw() {
       ctx.clearRect(0, 0, w, h);
+
+      // А. Фоновые мерцающие звезды с очень плавным суточным вращением небосвода
+      rotationAngle += 0.00015; // Медленное величественное вращение
+      const cx = w * 0.5;
+      const cy = -h * 0.1; // Центр вращения слегка выше экрана (полярная ось)
+
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(rotationAngle);
+
       for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
         s.alpha += s.speed;
@@ -909,7 +973,62 @@
         ctx.globalAlpha = Math.max(0, Math.min(1, s.alpha));
         ctx.fill();
       }
-      ctx.globalAlpha = 1;
+      ctx.restore();
+
+      // Б. Падающие звезды (метеоры с сияющими хвостами)
+      const now = Date.now();
+      if (now - lastShootTime > nextShootDelay) {
+        spawnShootingStar();
+      }
+
+      for (let i = shootingStars.length - 1; i >= 0; i--) {
+        const m = shootingStars[i];
+        m.life++;
+        m.x += m.dx;
+        m.y += m.dy;
+
+        // Плавное появление и затухание
+        let alpha = 1;
+        const half = m.maxLife * 0.3;
+        if (m.life < half) {
+          alpha = m.life / half;
+        } else {
+          alpha = 1 - (m.life - half) / (m.maxLife - half);
+        }
+        alpha = Math.max(0, Math.min(1, alpha));
+
+        // Координаты хвоста
+        const tailX = m.x - Math.cos(m.angle) * m.length;
+        const tailY = m.y - Math.sin(m.angle) * m.length;
+
+        const grad = ctx.createLinearGradient(m.x, m.y, tailX, tailY);
+        grad.addColorStop(0, m.color);
+        grad.addColorStop(0.3, 'rgba(245, 223, 168, ' + (alpha * 0.6) + ')');
+        grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(tailX, tailY);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.8;
+        ctx.lineCap = 'round';
+        ctx.globalAlpha = alpha;
+        ctx.stroke();
+
+        // Сияющая головка метеора
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.globalAlpha = alpha;
+        ctx.fill();
+        ctx.restore();
+
+        if (m.life >= m.maxLife || m.x > w + 200 || m.y > h + 200) {
+          shootingStars.splice(i, 1);
+        }
+      }
+
       requestAnimationFrame(draw);
     }
 
