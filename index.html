@@ -277,6 +277,35 @@
     background: #000;
   }
 
+  .video-sub-overlay {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 88%;
+    max-width: 540px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 15.5px;
+    line-height: 1.45;
+    padding: 8px 14px;
+    background: rgba(10, 10, 18, 0.88);
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    border-radius: 4px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.85);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    z-index: 5;
+  }
+
+  .video-sub-overlay.active {
+    opacity: 1;
+  }
+
   .video-caption {
     background: rgba(12, 12, 22, 0.95);
     padding: 12px 16px;
@@ -615,6 +644,7 @@
           <track kind="subtitles" src="assets/subtitles.vtt" srclang="ru" label="Русский" default>
           Ваш браузер не поддерживает встроенное видео.
         </video>
+        <div class="video-sub-overlay" id="video-sub-overlay"></div>
       </div>
       <div class="video-caption">13 мая 2021 · Рейс SU 1429 · 10 000 метров · Саундтрек: Tanir &amp; Tyomcha — «1, 2» ✦</div>
     </div>
@@ -1100,6 +1130,33 @@
     if (e.key === 'ArrowRight') nextRingStep();
     if (e.key === 'ArrowLeft') prevRingStep();
   });
+
+  // 4. Синхронизированные субтитры диалога предложения
+  (function() {
+    const proposalVideo = document.querySelector('.video-wrapper video');
+    const subOverlay = document.getElementById('video-sub-overlay');
+    
+    const dialogCues = [
+      { start: 35.0, end: 38.5, text: "Антон: «У меня есть один вопрос...»" },
+      { start: 38.5, end: 46.0, text: "«Ты хотела найти себе земного человека, я хочу им быть.»" },
+      { start: 46.0, end: 50.0, text: "«Ты выйдешь за меня?» 💍" },
+      { start: 50.0, end: 55.0, text: "Юля: «Ты серьёзно? Конечно да!» ❤️" },
+      { start: 55.0, end: 62.0, text: "✦ 10 000 метров над землёй · Кольцо ручной работы ✦" }
+    ];
+
+    if (proposalVideo && subOverlay) {
+      proposalVideo.addEventListener('timeupdate', () => {
+        const cur = proposalVideo.currentTime;
+        const cue = dialogCues.find(c => cur >= c.start && cur < c.end);
+        if (cue) {
+          subOverlay.textContent = cue.text;
+          subOverlay.classList.add('active');
+        } else {
+          subOverlay.classList.remove('active');
+        }
+      });
+    }
+  })();
 </script>
 
 </body>
