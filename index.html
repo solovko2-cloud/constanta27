@@ -40,7 +40,7 @@
   .container {
     position: relative;
     z-index: 1;
-    max-width: 720px;
+    max-width: 740px;
     margin: 0 auto;
     padding: 70px 24px 90px;
   }
@@ -71,10 +71,21 @@
   }
 
   .star-subtitle {
-    font-size: 14.5px;
+    font-size: 15px;
     color: var(--text-dim);
     letter-spacing: 0.25em;
     font-style: italic;
+  }
+
+  .star-epigraph {
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.6;
+    max-width: 580px;
+    margin: 18px auto 0;
+    opacity: 0.95;
+    text-shadow: 0 0 12px rgba(212,175,55,0.25);
   }
 
   .ornament {
@@ -87,7 +98,7 @@
 
   /* ── РАЗДЕЛЫ ── */
   .section {
-    margin-bottom: 64px;
+    margin-bottom: 68px;
     animation: fadeIn 2s ease;
     text-align: center;
   }
@@ -138,6 +149,54 @@
     color: #fff;
   }
 
+  /* БЭЙДЖ ПЕСНИ ЗНАКОМСТВА */
+  .music-badge {
+    margin: 28px auto 0;
+    max-width: 560px;
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.30);
+    border-radius: 4px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    text-align: left;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  }
+
+  .music-icon {
+    font-size: 28px;
+    color: var(--gold);
+    flex-shrink: 0;
+    animation: musicPulse 2.8s infinite ease-in-out;
+  }
+
+  @keyframes musicPulse {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.18); opacity: 1; text-shadow: 0 0 15px rgba(212,175,55,0.6); }
+  }
+
+  .music-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .music-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .music-quote {
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--text-dim);
+    line-height: 1.45;
+  }
+
   /* ── ФОТОГАЛЕРЕЯ ── */
   .photo-grid {
     display: grid;
@@ -167,6 +226,10 @@
     transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
+  .photo-item.portrait img {
+    aspect-ratio: 3/4;
+  }
+
   .photo-item:hover img {
     transform: scale(1.04);
   }
@@ -182,30 +245,6 @@
     font-style: italic;
     letter-spacing: 0.04em;
     text-align: center;
-  }
-
-  /* Плейсхолдер для будущих фото */
-  .photo-placeholder {
-    aspect-ratio: 4/3;
-    background: rgba(212,175,55,0.04);
-    border: 1px dashed rgba(212,175,55,0.28);
-    border-radius: 3px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 12.5px;
-    color: var(--gold-dim);
-    letter-spacing: 0.1em;
-    font-style: italic;
-    padding: 15px;
-    line-height: 1.5;
-  }
-  .photo-placeholder span {
-    font-size: 16px;
-    margin-bottom: 4px;
-    color: var(--gold);
-    opacity: 0.7;
   }
 
   /* ── ВИДЕОПРЕДЛОЖЕНИЕ 10 000 М ── */
@@ -247,8 +286,8 @@
   .timeline {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    max-width: 460px;
+    gap: 22px;
+    max-width: 520px;
     margin: 26px auto 0;
     text-align: left;
   }
@@ -260,12 +299,12 @@
   }
 
   .timeline-date {
-    font-size: 11.5px;
+    font-size: 12px;
     color: var(--gold);
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
     white-space: nowrap;
     padding-top: 2px;
-    min-width: 95px;
+    min-width: 110px;
     font-weight: 600;
     text-align: right;
   }
@@ -290,12 +329,12 @@
     width: 1px;
     flex: 1;
     background: linear-gradient(to bottom, var(--gold-dim), transparent);
-    min-height: 32px;
+    min-height: 34px;
     margin-top: 4px;
   }
 
   .timeline-text {
-    font-size: 15.5px;
+    font-size: 16px;
     line-height: 1.65;
     color: var(--text);
     font-weight: 300;
@@ -316,11 +355,20 @@
     border-top: 1px solid rgba(212,175,55,0.25);
     border-bottom: 1px solid rgba(212,175,55,0.25);
     margin: 50px auto;
-    max-width: 600px;
+    max-width: 640px;
+  }
+
+  .latin-quote {
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    line-height: 1.8;
+    margin-bottom: 22px;
   }
 
   .quote p {
-    font-size: 19px;
+    font-size: 18.5px;
     line-height: 1.85;
     font-style: italic;
     color: var(--text);
@@ -355,9 +403,10 @@
   @media (max-width: 580px) {
     .container { padding: 45px 16px 65px; }
     .photo-grid.cols-2 { grid-template-columns: 1fr; }
-    .photo-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+    .photo-grid.cols-3 { grid-template-columns: 1fr; }
     .timeline { max-width: 100%; }
-    .timeline-date { min-width: 80px; font-size: 11px; }
+    .timeline-date { min-width: 95px; font-size: 11px; }
+    .music-badge { flex-direction: column; text-align: center; gap: 10px; }
   }
 </style>
 </head>
@@ -372,7 +421,8 @@
   <header class="header">
     <div class="catalog-id">РосАстроКаталог Небесных Тел · РАК&thinsp;·&thinsp;27-α-ОФИ&thinsp;·&thinsp;2021</div>
     <h1 class="star-title">Рас Альхаг</h1>
-    <div class="star-subtitle">α Змееносца · Двойная звезда · 48.56 св. лет</div>
+    <div class="star-subtitle">α Змееносца · Двойная звезда · 48.6 св. лет</div>
+    <div class="star-epigraph">«Карта бескрайнего мира, где каждый меридиан хранит тепло пройденных дорог,<br>а путеводная звезда всегда ведет к родному дому»</div>
     <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
   </header>
 
@@ -382,14 +432,23 @@
     <div class="text-block">
       Она — из Магнитогорска. Он — из Москвы.<br>
       Шанс встретиться был <em>ничтожно мал</em>.<br><br>
-      Но 27 мая они встретились, соединив сердца вопреки теории вероятностей.<br>
+      Но 27 мая 2020 года они встретились, соединив сердца вопреки теории вероятностей.<br>
       И гравитация сделала всё остальное.
+    </div>
+
+    <!-- ТРИБЬЮТ ПЕСНЕ ЗНАКОМСТВА -->
+    <div class="music-badge">
+      <div class="music-icon">♫</div>
+      <div class="music-info">
+        <span class="music-title">Саундтрек нашей встречи: Tanir &amp; Tyomcha — «1, 2»</span>
+        <span class="music-quote">«Мы такие разные, но вдвоём мы никому разделить нас не даём... Ты Венера, я Юпитер»</span>
+      </div>
     </div>
   </section>
 
-  <!-- 3. СЕКЦИЯ: НАШИ ФОТО (2x2) -->
+  <!-- 3. СЕКЦИЯ: НАШИ МОМЕНТЫ (ПЕРВЫЕ ШАГИ И ПУТЕШЕСТВИЯ) -->
   <section class="section">
-    <div class="section-label">Наши фото</div>
+    <div class="section-label">Первые шаги и путешествия</div>
     <div class="photo-grid cols-2">
       
       <!-- 1. У родителей 2020 год -->
@@ -404,16 +463,16 @@
         <div class="caption">Первая поездка в Магнитогорск</div>
       </div>
 
-      <!-- 3. В тематических костюмах -->
+      <!-- 3. Первый раз в самолёте на пути в Магнитогорск -->
+      <div class="photo-item">
+        <img src="assets/plane_to_magnitogorsk.jpg" alt="Первый раз в самолете на пути в Магнитогорск" loading="lazy">
+        <div class="caption">Первый полёт на пути в Магнитогорск</div>
+      </div>
+
+      <!-- 4. В тематических костюмах -->
       <div class="photo-item">
         <img src="assets/costume_birthday.jpg" alt="Ездили на день рождения в тематических костюмах" loading="lazy">
         <div class="caption">На день рождения в тематических костюмах</div>
-      </div>
-
-      <!-- 4. Наша свадьба 2021 -->
-      <div class="photo-item">
-        <img src="assets/wedding_2021.jpg" alt="Наша свадьба 2021" loading="lazy">
-        <div class="caption">Наша свадьба · 27.12.2021</div>
       </div>
 
     </div>
@@ -423,14 +482,14 @@
   <section class="section">
     <div class="section-label">13 мая 2021 · 10 000 метров</div>
     <div class="text-block">
-      Рейс Магнитогорск — Москва.<br>
+      Рейс SU 1429 (Магнитогорск — Москва).<br>
       В кармане — кольцо. Не купленное.<br>
       <em>Сделанное своими руками на тайном мастер-классе.</em><br><br>
       Тринадцатое. Четверг. Не пятница — но всё равно<br>
       против суеверий. Как всегда.
     </div>
 
-    <!-- ВИДЕО ПРЕДЛОЖЕНИЯ -->
+    <!-- ВИДЕО ПРЕДЛОЖЕНИЯ С НЕЖНОЙ ФОНОВОЙ МЕЛОДИЕЙ -->
     <div class="video-card">
       <div class="video-wrapper">
         <video controls playsinline preload="metadata" poster="assets/proposal_poster.jpg">
@@ -438,7 +497,7 @@
           Ваш браузер не поддерживает встроенное видео.
         </video>
       </div>
-      <div class="video-caption">13 мая 2021 · Рейс Магнитогорск — Москва · На высоте 10 000 метров ✦</div>
+      <div class="video-caption">13 мая 2021 · Рейс SU 1429 · На высоте 10 000 метров ✦</div>
     </div>
   </section>
 
@@ -461,73 +520,91 @@
     </div>
   </section>
 
-  <!-- 6. ТАЙМЛАЙН: НАША КОНСТАНТА -->
+  <!-- 6. СЕКЦИЯ: ВЕХИ СУДЬБЫ — БАЛИ И СВАДЬБА -->
+  <section class="section">
+    <div class="section-label">Вехи союза: Бали и Свадьба</div>
+    <div class="photo-grid cols-3">
+      
+      <!-- 1. Отпуск на Бали -->
+      <div class="photo-item portrait">
+        <img src="assets/bali_vacation.jpg" alt="Наш первый прекрасный отпуск на Бали" loading="lazy">
+        <div class="caption">Остров Бали · Наш первый прекрасный отпуск</div>
+      </div>
+
+      <!-- 2. Свадьба 2021 -->
+      <div class="photo-item portrait">
+        <img src="assets/wedding_2021.jpg" alt="Наша свадьба 2021" loading="lazy">
+        <div class="caption">Наша свадьба · 27.12.2021</div>
+      </div>
+
+      <!-- 3. Свадебный портрет -->
+      <div class="photo-item portrait">
+        <img src="assets/wedding_2021_portrait.jpg" alt="Свадебный день" loading="lazy">
+        <div class="caption">Свадебный вальс · Рождение семьи</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7. ТАЙМЛАЙН: НАША КОНСТАНТА -->
   <section class="section">
     <div class="section-label">Наша константа</div>
     <div class="timeline">
 
       <div class="timeline-item">
-        <div class="timeline-date">27 · 05</div>
+        <div class="timeline-date">27 · 05 · 2020</div>
         <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-vert"></div></div>
-        <div class="timeline-text">Встретились<em>Москва ↔ Магнитогорск</em></div>
+        <div class="timeline-text">Встретились<em>Москва ↔ Магнитогорск · Первое притяжение</em></div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-date">13 · 05 · 2021</div>
         <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-vert"></div></div>
-        <div class="timeline-text">Предложение на высоте 10 000 м<em>Кольцо ручной работы. Четверг, 13-е.</em></div>
+        <div class="timeline-text">Предложение на высоте 10 000 м<em>Рейс SU 1429. Кольцо ручной работы. Четверг, 13-е.</em></div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-date">27 · 11</div>
         <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-vert"></div></div>
-        <div class="timeline-text">День рождения Юлии<em>(и почти — Антона)</em></div>
+        <div class="timeline-text">День рождения Юлии<em>(А Антон должен был родиться 27.11, но задержался на 4 дня до 01.12, чтобы не затмевать её идеальную дату 😉)</em></div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-date">27 · 12 · 2021</div>
         <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-vert"></div></div>
-        <div class="timeline-text">Свадьба<em>Наша годовщина</em></div>
+        <div class="timeline-text">Свадьба &amp; Регистрация Звезды<em>День Земного Союза · Красногорск (Vegas Crocus City) · Рас Альхаг</em></div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-date">27 · 06</div>
         <div class="timeline-line"><div class="timeline-dot"></div></div>
-        <div class="timeline-text">Забрал из роддома<em>Нас стало трое</em></div>
+        <div class="timeline-text">Забрал из роддома<em>«Забрал вас с дочкой из роддома · Нас стало трое»</em></div>
       </div>
 
     </div>
   </section>
 
-  <!-- 7. ГАЛЕРЕЯ: НАШИ МОМЕНТЫ (ПЛЕЙСХОЛДЕРЫ ДЛЯ СЛЕДУЮЩИХ ФОТО) -->
-  <section class="section">
-    <div class="section-label">Наши моменты</div>
-    <div class="photo-grid cols-3">
-      <div class="photo-placeholder"><span>✦</span>Место для фото</div>
-      <div class="photo-placeholder"><span>✦</span>Место для фото</div>
-      <div class="photo-placeholder"><span>✦</span>Место для фото</div>
-      <div class="photo-placeholder"><span>✦</span>Место для фото</div>
-      <div class="photo-placeholder"><span>✦</span>Место для фото</div>
-      <div class="photo-placeholder"><span>✦</span>Место для фото</div>
-    </div>
-  </section>
-
-  <!-- 8. ФИНАЛЬНАЯ ЦИТАТА -->
+  <!-- 8. ФИНАЛЬНЫЙ МАНИФЕСТ -->
   <div class="quote">
+    <div class="latin-quote">
+      «In orbe infinito omnis meridianus calorem itinerum servat,<br>
+      et astrum custodiens Ras Alhague semper ad arcem nos reducit»
+    </div>
     <p>
       Говорят, мы несовместимы.<br>
       Говорят, звёзды предрекают нам разное.<br>
       Пусть звёзды бессильно освещают наш счастливый путь —<br>
       им не дано указывать, что нам уготовано.
     </p>
-    <div class="attribution">Антон & Юлия · с 27.05 навсегда</div>
+    <div class="attribution">Антон &amp; Юлия · с 27.05 навсегда · Константа 27</div>
   </div>
 
   <!-- 9. АСТРОНОМИЧЕСКИЙ ПОДВАЛ -->
   <footer class="coords-footer">
-    17h 36m 10.2s &nbsp;/&nbsp; +12° 32′ 33.0″<br>
-    Созвездие Змееносца · 48.56 световых лет<br>
-    <span style="color:var(--gold)">✦</span>
+    α = 17h 34m 56s &nbsp;/&nbsp; δ = +12° 33′ 36″<br>
+    Созвездие Змееносца · 48.6 световых лет · Двойная звезда Рас Альхаг<br>
+    Зарегистрировано в каталоге: 27 декабря 2021 г.<br>
+    <span style="color:var(--gold)">✦ &nbsp; 27 &nbsp; ✦</span>
   </footer>
 
 </div>
